@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <style>
+        /* Modern CSS reset and background styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Birthday Card Container */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 500px; /* Slightly wider to accommodate side pictures */
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* New Side-by-Side Flex Layout Container */
+        .gift-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between photos and the main gift */
+            margin-bottom: 25px;
+        }
+
+        /* Styling for the side pictures */
+        .side-photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%; /* Keeps them as neat circles */
+            border: 3px solid #ff4a6e;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Large Animated Cake/Emoji */
+        .cake {
+            font-size: 70px;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        h1 {
+            color: #ff4a6e;
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Interactive Surprise Button */
+        .btn {
+            background: #ff4a6e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 74, 110, 0.4);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background: #e03256;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Hidden Wish Segment */
+        .hidden-wish {
+            display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #ffe3e8;
+            color: #d12246;
+            font-weight: 600;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        /* Background Particle Effect */
+        .particle {
+            position: absolute;
+            position: fixed;
+            bottom: -50px;
+            font-size: 24px;
+            pointer-events: none;
+            animation: rise 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        /* Keyframe Animations */
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -50px;
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                bottom: 105vh;
+                transform: translateX(var(--x-end)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- The new layout containing left photo, main gift, and right photo -->
+        <div class="gift-container">
+            <img class="side-photo" src="C:\Users\Rishema\Downloads\pic 1.jpeg" alt="Left Birthday Pic">
+            <div class="cake">🎂</div>
+            <img class="side-photo" src="C:\Users\Rishema\Downloads\pict 2.jpeg" alt="Right Birthday Pic">
+        </div>
+
+        <h1>Happy Birthday Dhritiiiii!</h1>
+        <p>21 already??✨</p>
+        <button class="btn" onclick="revealSurprise()">Click for a Letter! 🎁</button>
+        <div id="wish" class="hidden-wish">
+            Dear Dhriti, happy 21st birthday! I have no idea ki time itni jaldi kese chala jata hai. Hum kal hi toh barbies se khel rahe the, well set up and preperation kar rahe the cuz usse zyada toh time nhi hota tha, and then suddenly you had to move and now uss baat ko bhi kitna time ho gaya hai. But irrespective of the distance, our friendship could never be harmed and I'm so grateful for that. For as long as I've remmebered my life, you've been in it. I can't even imagine a universe where I exist without you. You are my person, have always been and will always be. I may not know ki meri life mai aage kya hoga, but I know that you'll be there with me through. I love you so freaking much I dont have enough words to describe that. 
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactivity and particle elements
+        function revealSurprise() {
+            const wishBox = document.getElementById('wish');
+            wishBox.style.display = 'block';
+
+            for (let i = 0; i < 30; i++) {
+                createParticle(true);
+            }
+        }
+
+        function createParticle(isBurst = false) {
+            const emojis = ['🎈', '🎉', '✨', '💖', '🥳', '🧁'];
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const startX = Math.random() * window.innerWidth;
+            const xEnd = (Math.random() - 0.5) * 200;
+            
+            particle.style.left = startX + 'px';
+            particle.style.setProperty('--x-end', xEnd + 'px');
+            
+            if (isBurst) {
+                particle.style.bottom = (Math.random() * 40 + 30) + 'vh';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            } else {
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+            }
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        setInterval(() => createParticle(false), 800);
+    </script>
+
+</body>
+</html>
